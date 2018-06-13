@@ -1,0 +1,58 @@
+server:
+  session-timeout: 1800
+#    tomcat:
+#        max-threads: 1000
+#        min-spare-threads: 30
+  port: 80
+#    uri-encoding: utf-8
+#security:
+#  basic:
+#    enabled: false
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: dev
+
+##配置上下文，根据自己项目设置
+#server.contextPath=/MavenSpringBoot
+##配置邮件消息
+#spring.mail.host=smtp.qq.com
+##发送邮件者信箱
+#spring.mail.username=xxxxxxxxx@qq.com
+##这里不是邮箱的登录密码，而是开启PO3/SMTP服务时邮箱的授权码
+#spring.mail.password=xxxxxxxxxxxxxxxx
+#spring.mail.default-encoding=UTF-8
+#spring.mail.port=587
+#spring.mail.properties.mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+#spring.mail.properties.mail.debug=true
+  devtools:
+    restart:
+      enabled: true
+  mail:
+    host: smtp.qq.com
+    username: ykbian@qq.com
+    password: iioqadywnbrhbcij
+    default-encoding: UTF-8
+    port: 587
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+        debug: true
+#  cache:
+#    type: ehcache
+#    ehcache:
+#      config: config/ehcache.xml
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mapping/**/*Mapper.xml
+  typeAliasesPackage: com.byk.myboke.**.entity
+#[弃用]配置缓存和session存储方式，默认ehcache,可选redis,[弃用]调整至 spring cache type【shiro.用户，权限，session，spring.cache通用】
+#[弃用]cacheType: ehcache

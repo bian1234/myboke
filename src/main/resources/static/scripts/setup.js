@@ -151,28 +151,11 @@ function sendMessage() {
 
                 $("div#msgs").html('<p class="error">无法完成您的请求。请参阅下面的错误!</p>' + errors);
             }
-            else if (data.success == 1) {
+            else if (restUtil.status  == 20000) {
 
                 $("div#msgs").html('<p class="error">留言已收悉，我们会尽快回复您。</p>');
-            }
 
-            // if (data.success == 0) {
-            //     var errors = '<ul><li>';
-            //     if (data.name_msg != '')
-            //         errors += data.name_msg + '</li>';
-            //     if (data.email_msg != '')
-            //         errors += '<li>' + data.email_msg + '</li>';
-            //     if (data.message_msg != '')
-            //         errors += '<li>' + data.message_msg + '</li>';
-            //     if (data.subject_msg != '')
-            //         errors += '<li>' + data.subject_msg + '</li>';
-            //
-            //     $("div#msgs").html('<p class="error">无法完成您的请求。请参阅下面的错误!</p>' + errors);
-            // }
-            // else if (data.success == 1) {
-            //
-            //     $("div#msgs").html('<p class="error">留言已收悉，我们会尽快回复您。</p>');
-            // }
+            }
 
         },
         error: function () {

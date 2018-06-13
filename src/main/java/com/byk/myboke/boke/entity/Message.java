@@ -28,7 +28,7 @@ public class Message {
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getFullname() {
@@ -36,7 +36,7 @@ public class Message {
     }
 
     public void setFullname(String fullname) {
-        this.fullname = fullname == null ? null : fullname.trim();
+        this.fullname = fullname;
     }
 
     public String getPhonenumber() {
@@ -44,7 +44,7 @@ public class Message {
     }
 
     public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber == null ? null : phonenumber.trim();
+        this.phonenumber = phonenumber;
     }
 
     public String getEmailaddress() {
@@ -52,7 +52,7 @@ public class Message {
     }
 
     public void setEmailaddress(String emailaddress) {
-        this.emailaddress = emailaddress == null ? null : emailaddress.trim();
+        this.emailaddress = emailaddress;
     }
 
     public String getSubject() {
@@ -60,7 +60,7 @@ public class Message {
     }
 
     public void setSubject(String subject) {
-        this.subject = subject == null ? null : subject.trim();
+        this.subject = subject;
     }
 
     public String getMessage() {
@@ -68,7 +68,7 @@ public class Message {
     }
 
     public void setMessage(String message) {
-        this.message = message == null ? null : message.trim();
+        this.message = message;
     }
 
     public String getUserIp() {
@@ -76,7 +76,7 @@ public class Message {
     }
 
     public void setUserIp(String userIp) {
-        this.userIp = userIp == null ? null : userIp.trim();
+        this.userIp = userIp;
     }
 
     public String getCreateUser() {
@@ -84,7 +84,7 @@ public class Message {
     }
 
     public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
+        this.createUser = createUser;
     }
 
     public Date getCreateTime() {
