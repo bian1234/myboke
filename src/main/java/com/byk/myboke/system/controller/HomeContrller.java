@@ -37,7 +37,6 @@ public class HomeContrller {
     @RequestMapping("/")
     public String toIndex(HttpServletRequest request){
         String ip = HomeContrller.getIpAddr(request);
-
         return "index";
     }
 }

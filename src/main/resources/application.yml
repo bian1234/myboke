@@ -18,18 +18,7 @@ spring:
   profiles:
     active: dev
 
-##配置上下文，根据自己项目设置
-#server.contextPath=/MavenSpringBoot
-##配置邮件消息
-#spring.mail.host=smtp.qq.com
-##发送邮件者信箱
-#spring.mail.username=xxxxxxxxx@qq.com
-##这里不是邮箱的登录密码，而是开启PO3/SMTP服务时邮箱的授权码
-#spring.mail.password=xxxxxxxxxxxxxxxx
-#spring.mail.default-encoding=UTF-8
-#spring.mail.port=587
-#spring.mail.properties.mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
-#spring.mail.properties.mail.debug=true
+
   devtools:
     restart:
       enabled: true
@@ -42,9 +31,21 @@ spring:
     properties:
       mail:
         smtp:
-          socketFactory:
-            class: javax.net.ssl.SSLSocketFactory
-        debug: true
+#          socketFactory:
+#            class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        #debug: true
+
+#spring.mail.host=smtp.qq.com
+#spring.mail.username=393156105@qq.com
+#spring.mail.password=tdckceislhfibhbbb
+#spring.mail.properties.mail.smtp.auth=true
+#spring.mail.properties.mail.smtp.starttls.enable=true
+#spring.mail.properties.mail.smtp.starttls.required=true
+#
 #  cache:
 #    type: ehcache
 #    ehcache:

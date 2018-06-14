@@ -108,15 +108,24 @@ function checkEmail(email) {
     return true;
 }
 
+function checkPhone(phonenumber) {
+    var check = /^[1][2,3,4,5,6,7,8,9][0-9]{9}$/;
+    if (!check.test(phonenumber)) {
+        return false;
+    }
+    return true;
+}
+
+
 function sendMessage() {
     // receive the provided data
     var name = $("input#name").val();
     var email = $("input#email").val();
     var subject = $("input#subject").val();
     var msg = $("textarea#msg").val();
-
+    var phonenumber =$("input#phonenumber").val();
     // check if all the fields are filled
-    if (name == '' || name == 'Full Name*' || email == '' || email == 'Email Address*' || subject == '' || subject == 'Subject*' || msg == '' || msg == 'Your Message*') {
+    if (name == '' || name == '姓名*' || email == '' || email == '邮箱*'|| phonenumber == ''|| phonenumber == '手机号码*' || subject == '' || subject == '摘要*' || msg == '' || msg == '正文（200字以内）*') {
         $("div#msgs").html('<p class="warning">请完整的填写您的信息</p>');
 
         return false;
@@ -125,6 +134,11 @@ function sendMessage() {
     // verify the email address
     if (!checkEmail(email)) {
         $("div#msgs").html('<p class="warning">请填写正确的邮箱格式</p>');
+        return false;
+    }
+
+    if (!checkPhone(phonenumber)) {
+        $("div#msgs").html('<p class="warning">请填写正确的手机号码</p>');
         return false;
     }
 
@@ -148,13 +162,19 @@ function sendMessage() {
                     errors += '<li>' + data.message.subject + '</li>';
                 if (data.message.message != '')
                     errors += '<li>' + data.message.message + '</li>';
-
-                $("div#msgs").html('<p class="error">无法完成您的请求。请参阅下面的错误!</p>' + errors);
+                $("div#msgs").html('<p class="error" >无法完成您的请求。请参阅下面的错误!</p>' + errors);
             }
             else if (restUtil.status  == 20000) {
-
-                $("div#msgs").html('<p class="error">留言已收悉，我们会尽快回复您。</p>');
-
+                $("div#msgs").html('<p class="error" >留言已收到，我们会尽快回复您。</p>');
+                $('#cform').empty();
+                var str = '';
+                str += '<input type="text" id="name" name="fullname" value="Full Name*" onFocus="if(this.value == \'Full Name*\') this.value = \'\'" onblur="if(this.value == \'\') this.value = \'Full Name*\'" />';
+                str += '<input type="text" id="email" name="emailaddress" value="Email Address*" onFocus="if(this.value == \'Email Address*\') this.value = \'\'" onblur="if(this.value == \'\') this.value = \'Email Address*\'" />';
+                str += '<input type="text" id="phonenumber" name="phonenumber" value="Phone Number*" onFocus="if(this.value == \'Phone Number*\') this.value = \'\'" onblur="if(this.value == \'\') this.value = \'Phone Number*\'" />';
+                str += '<input type="text" id="subject" name="subject" value="Subject*" onFocus="if(this.value == \'Subject*\') this.value = \'\'" onblur="if(this.value == \'\') this.value = \'Subject*\'" />';
+                str += '<textarea id="msg" name="message" onFocus="if(this.value == \'200字以内\') this.value = \'\'" onblur="if(this.value == \'\') this.value = \'200字以内\'"  MaxLength="400">200字以内</textarea>';
+                str += '<button id="submit" class="button" onclick="sendup();"> 留言</button>';
+                $('#cform').append(str);
             }
 
         },
@@ -164,4 +184,16 @@ function sendMessage() {
     });
 
     return false;
+}
+
+function WeChat() {
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: '258px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: '<img src="images/byk/WeChat.jpg" alt="" />'
+    });
 }
