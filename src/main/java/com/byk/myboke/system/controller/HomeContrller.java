@@ -3,6 +3,8 @@ package com.byk.myboke.system.controller;
 import com.byk.myboke.boke.entity.Visiter;
 import com.byk.myboke.boke.service.VisiterService;
 import com.byk.myboke.system.commen.IPUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ import java.util.Date;
 @Controller
 public class HomeContrller {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private IPUtil ipUtil;
 
@@ -26,6 +30,7 @@ public class HomeContrller {
 
     @RequestMapping("/")
     public String toIndex(HttpServletRequest request){
+        logger.info("有人访问了网页");
         Visiter visiter = new Visiter();
         String ip = ipUtil.getIpAddr(request);
         visiter.setTime(new Date());
