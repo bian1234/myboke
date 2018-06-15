@@ -1,5 +1,7 @@
 package com.byk.myboke.system.commen;
 
+import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -7,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2018/6/13 14:54
  * @Todo:获取用户ip
  */
-
+@Service
 public class IPUtil  {
 
-    public   static  String getIpAddr(HttpServletRequest request) {
+    public     String getIpAddr(HttpServletRequest request) {
 
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {

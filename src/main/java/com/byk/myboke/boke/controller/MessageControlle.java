@@ -28,10 +28,14 @@ public class MessageControlle {
     @Autowired
     private MailUtil mailUtil;
 
+    @Autowired
+    private IPUtil ipUtil;
+
+
     @PostMapping("/insert")
     public RestUtil insert(HttpServletRequest request, Message message) throws Exception{
         RestUtil restUtil = new RestUtil();
-        String IP = IPUtil.getIpAddr(request);
+        String IP = ipUtil.getIpAddr(request);
         message.setUserIp(IP);
         if (messageService.insertSelective(message) > 0) {
             restUtil.setMsg("我会尽快回复您的留言");

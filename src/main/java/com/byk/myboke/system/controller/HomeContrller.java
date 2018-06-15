@@ -1,9 +1,14 @@
 package com.byk.myboke.system.controller;
 
+import com.byk.myboke.boke.entity.Visiter;
+import com.byk.myboke.boke.service.VisiterService;
+import com.byk.myboke.system.commen.IPUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * @Author: bianyakun
@@ -13,30 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HomeContrller {
 
-    public static  String getIpAddr(HttpServletRequest request) {
+    @Autowired
+    private IPUtil ipUtil;
 
-        String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_CLIENT_IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        return ip;
-    }
+    @Autowired
+    private VisiterService visiterService;
 
     @RequestMapping("/")
     public String toIndex(HttpServletRequest request){
-        String ip = HomeContrller.getIpAddr(request);
+        Visiter visiter = new Visiter();
+        String ip = ipUtil.getIpAddr(request);
+        visiter.setTime(new Date());
+        visiter.setVisiterIp(ip);
+        visiterService.insertSelective(visiter);
         return "index";
     }
 }
