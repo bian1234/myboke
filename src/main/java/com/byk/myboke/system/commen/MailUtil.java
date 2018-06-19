@@ -49,6 +49,22 @@ public class MailUtil {
         javaMailSender.send(message);
     }
 
+    public   void sendEmailToCount(int sum)  {
+        MimeMessage message = null;
+        try {
+            message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("ykbian@qq.com");
+            helper.setTo("18894559996@139.com");
+            String subject = "我就是试一下";
+            helper.setSubject(subject);
+            String sb = "我就是试一下";
+            helper.setText(sb, true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        javaMailSender.send(message);
+    }
 
     /**
      * @Author: bianyakun

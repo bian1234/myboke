@@ -82,4 +82,11 @@
       del_flag = #{delFlag,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="countIp" resultType="int">
+    SELECT COUNT(*) FROM visiter
+    <where>
+      to_days(time) = to_days(now())
+    </where>
+  </select>
 </mapper>

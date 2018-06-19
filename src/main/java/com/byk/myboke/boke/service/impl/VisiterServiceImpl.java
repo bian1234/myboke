@@ -32,6 +32,11 @@ public class VisiterServiceImpl  implements VisiterService {
     }
 
     @Override
+    public int countIp() {
+        return 0;
+    }
+
+    @Override
     public Visiter selectByPrimaryKey(String id) {
         return null;
     }
