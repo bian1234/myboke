@@ -13,7 +13,7 @@ $(document).ready(function () {
     $(".knob").knob();
     //Initialie tipsy here
     $('#fb').tipsy({ gravity: 'n', fade: true });
-    $('#tw').tipsy({ gravity: 'n', fade: true });
+    $('#WeChat').tipsy({ gravity: 'n', fade: true });
     $('#ld').tipsy({ gravity: 'n', fade: true });
     /* smooth-scroll */
     $("ul#navigation a").smoothScroll({
@@ -165,6 +165,12 @@ function sendMessage() {
                 $("div#msgs").html('<p class="error" >无法完成您的请求。请参阅下面的错误!</p>' + errors);
             }
             else if (restUtil.status  == 20000) {
+                // layer.load();
+                // //此处演示关闭
+                // setTimeout(function(){
+                //     layer.closeAll('loading');
+                // }, 2000);
+
                 $("div#msgs").html('<p class="error" >留言已收到，我们会尽快回复您。</p>');
                 $('#cform').empty();
                 var str = '';

@@ -2,7 +2,7 @@ package com.byk.myboke.system.controller;
 
 import com.byk.myboke.boke.entity.Visiter;
 import com.byk.myboke.boke.service.VisiterService;
-import com.byk.myboke.system.commen.IPUtil;
+import com.byk.myboke.commen.IPUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +22,22 @@ public class HomeContrller {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private IPUtil ipUtil;
+//    @Autowired
+//    private IPUtil 什么;
 
     @Autowired
     private VisiterService visiterService;
 
     @RequestMapping("/")
     public String toIndex(HttpServletRequest request){
-        logger.info("有人访问了网页");
+
         Visiter visiter = new Visiter();
-        String ip = ipUtil.getIpAddr(request);
+        String ip = IPUtil.getIpAddr(request);
+        logger.info(ip+"访问了网页");
         visiter.setTime(new Date());
         visiter.setVisiterIp(ip);
         visiterService.insertSelective(visiter);
+
         return "index";
     }
 }

@@ -2,9 +2,9 @@ package com.byk.myboke.boke.controller;
 
 import com.byk.myboke.boke.entity.Message;
 import com.byk.myboke.boke.service.MessageService;
-import com.byk.myboke.system.commen.IPUtil;
-import com.byk.myboke.system.commen.MailUtil;
-import com.byk.myboke.system.commen.RestUtil;
+import com.byk.myboke.commen.IPUtil;
+import com.byk.myboke.commen.MailUtil;
+import com.byk.myboke.commen.RestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +31,22 @@ public class MessageControlle {
     @Autowired
     private MailUtil mailUtil;
 
-    @Autowired
-    private IPUtil ipUtil;
+
+//    @Autowired
+//    private IPUtil ipUtil;
 
 
     @PostMapping("/insert")
     public RestUtil insert(HttpServletRequest request, Message message) throws Exception{
         logger.info("新的留言");
         RestUtil restUtil = new RestUtil();
-        String IP = ipUtil.getIpAddr(request);
-        message.setUserIp(IP);
+        String ip = IPUtil.getIpAddr(request);
+        message.setUserIp(ip);
         if (messageService.insertSelective(message) > 0) {
             restUtil.setMsg("我会尽快回复您的留言");
             restUtil.setStatus(20000);
-            mailUtil.sendEmailToMe(message,IP);
-            logger.info("Ip为"+IP+"的用户留言了");
+            mailUtil.sendEmailToMe(message,ip);
+            logger.info("Ip为"+ip+"的用户留言了");
             try {
                 mailUtil.sendEmailToVistor(message);
             }catch (Exception e){
