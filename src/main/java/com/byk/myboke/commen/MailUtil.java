@@ -1,6 +1,6 @@
 package com.byk.myboke.commen;
 
-import com.byk.myboke.boke.entity.Message;
+import com.byk.myboke.boke.entity.BokeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,7 +27,7 @@ public class MailUtil {
      * @todo: 给管理员的邮箱发送邮件
      * @param:   * @param null
      */
-    public   void sendEmailToMe(Message message1,String IP)  {
+    public   void sendEmailToMe(BokeMessage message1, String IP)  {
         MimeMessage message = null;
         try {
             message = javaMailSender.createMimeMessage();
@@ -67,7 +67,7 @@ public class MailUtil {
      * @todo: 回复访客邮箱
      * @param:   * @param null
      */
-    public   void sendEmailToVistor(Message message1)  {
+    public   void sendEmailToVistor(BokeMessage message1)  {
         MimeMessage message = null;
         try {
             message = javaMailSender.createMimeMessage();
@@ -83,7 +83,7 @@ public class MailUtil {
         javaMailSender.send(message);
     }
 
-    public static  String toHtml2(Message message1,String IP){
+    public static  String toHtml2(BokeMessage message1,String IP){
         String suject = message1.getSubject();
         String name = message1.getFullname();
         String msg = message1.getMessage();
@@ -100,7 +100,7 @@ public class MailUtil {
         return sb.toString();
     }
 
-    public static  String toHtml3(Message message1){
+    public static  String toHtml3(BokeMessage message1){
         String name = message1.getFullname();
         StringBuffer sb = new StringBuffer();
         sb.append("<p>您好!"+name+"，留言我已经收到了，我会尽快回复您的。</p>");

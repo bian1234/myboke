@@ -120,6 +120,8 @@ function checkPhone(phonenumber) {
     return true;
 }
 
+//===================================================以下可改=================================================
+var prefix = "http://localhost/";
 
 function sendMessage() {
     // receive the provided data
@@ -150,7 +152,7 @@ function sendMessage() {
     var dataString = $('#cform').serialize();
     $.ajax({
         type: "POST",
-        url: '/message/insert',
+        url: prefix+'/message/insert',
         data: dataString,
         dataType: 'json',
         success: function (restUtil) {
@@ -212,21 +214,24 @@ function loadWorks() {
     $.ajax({
         cache : true,
         type : "get",
-        url : "http://localhost/displayWork/list",
+        url : prefix+"/displayWork/list",
         async : false,
-        // error : function(request) {
-        //     parent.layer.alert("Connection error");
-        // },
+        //data:{"limit":1,"offset":100},
+       // dataType:"jsonp",
         success : function(restUtil) {
             if (restUtil.status == 20000) {
                var displayWorks = restUtil.data;
+               $("#works").empty();
                for(var i = 0;i<displayWorks.length;i++){
                   var pageName = displayWorks[i].pageName;
                    var pageAddress = displayWorks[i].pageAddress;
                    var pageLink = displayWorks[i].pageLink;
                    var pageClass = displayWorks[i].pageClass;
                    var targetLink = displayWorks[i].targetLink;
-                    alert(pageName+pageAddress+pageLink+pageClass+targetLink);
+                   var str = '';
+                    str += '<a href="'+pageLink+'" target="'+targetLink+'">';
+                   str += ' <img class="'+pageClass+'" src="http://localhost:8081/file/'+pageName+'" alt=""/> </a>';
+                   $("#works").append(str);
                }
             }
         }

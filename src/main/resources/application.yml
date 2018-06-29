@@ -45,5 +45,5 @@ logging:
 
 #以下是自定义配置文件
 byk:
-  pagePath: localhost:8081/file/
+  pagePath: http://localhost:8081/file/
 
