@@ -1,6 +1,8 @@
 //Setup flex slider
 $(window).load(function () {
     $('.gf-slider').flexslider();
+
+    loadWorks();
 });
 //Setup Page
 $(document).ready(function () {
@@ -97,6 +99,8 @@ $(document).ready(function () {
     });
     //bind send message here
     $('#submit').click(sendMessage);
+
+
 });
 
 /* Contact Form */
@@ -201,5 +205,30 @@ function WeChat() {
         skin: 'layui-layer-nobg', //没有背景色
         shadeClose: true,
         content: '<img src="images/byk/WeChat.jpg" alt="" />'
+    });
+}
+
+function loadWorks() {
+    $.ajax({
+        cache : true,
+        type : "get",
+        url : "http://localhost/displayWork/list",
+        async : false,
+        // error : function(request) {
+        //     parent.layer.alert("Connection error");
+        // },
+        success : function(restUtil) {
+            if (restUtil.status == 20000) {
+               var displayWorks = restUtil.data;
+               for(var i = 0;i<displayWorks.length;i++){
+                  var pageName = displayWorks[i].pageName;
+                   var pageAddress = displayWorks[i].pageAddress;
+                   var pageLink = displayWorks[i].pageLink;
+                   var pageClass = displayWorks[i].pageClass;
+                   var targetLink = displayWorks[i].targetLink;
+                    alert(pageName+pageAddress+pageLink+pageClass+targetLink);
+               }
+            }
+        }
     });
 }

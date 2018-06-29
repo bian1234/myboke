@@ -1,15 +1,10 @@
-package com.byk.myboke.boke.service;
+package com.byk.myboke.boke.mapper;
 
 import com.byk.myboke.boke.entity.BokeMessage;
+import org.springframework.stereotype.Repository;
 
-/**
- * @Author: bianyakun
- * @Date: 2018/6/13 14:43
- * @Todo:
- */
-
-public interface MessageService {
-
+@Repository
+public interface BokeMessageMapper {
     int deleteByPrimaryKey(String id);
 
     int insert(BokeMessage record);
@@ -22,5 +17,3 @@ public interface MessageService {
 
     int updateByPrimaryKey(BokeMessage record);
 }
-
-

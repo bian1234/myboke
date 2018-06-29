@@ -37,7 +37,6 @@ public class HomeContrller {
         visiter.setTime(new Date());
         visiter.setVisiterIp(ip);
         visiterService.insertSelective(visiter);
-
         return "index";
     }
 }

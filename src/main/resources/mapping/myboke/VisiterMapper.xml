@@ -13,15 +13,18 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from visiter
+    from boke_visiter
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from visiter
+    delete from boke_visiter
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.byk.myboke.boke.entity.Visiter" >
-    insert into visiter (id, visiter_ip, time, 
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(), '-', '') as id from dual
+    </selectKey>
+    insert into boke_visiter (id, visiter_ip, time, 
       del_flag)
     values (#{id,jdbcType=VARCHAR}, #{visiterIp,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{delFlag,jdbcType=INTEGER})
@@ -30,7 +33,7 @@
     <selectKey keyProperty="id" resultType="string" order="BEFORE">
       select replace(uuid(), '-', '') as id from dual
     </selectKey>
-    insert into visiter
+    insert into boke_visiter
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -61,7 +64,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.byk.myboke.boke.entity.Visiter" >
-    update visiter
+    update boke_visiter
     <set >
       <if test="visiterIp != null" >
         visiter_ip = #{visiterIp,jdbcType=VARCHAR},
@@ -76,17 +79,10 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.byk.myboke.boke.entity.Visiter" >
-    update visiter
+    update boke_visiter
     set visiter_ip = #{visiterIp,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-
-  <select id="countIp" resultType="int">
-    SELECT COUNT(*) FROM visiter
-    <where>
-      to_days(time) = to_days(now())
-    </where>
-  </select>
 </mapper>

@@ -1,6 +1,6 @@
 package com.byk.myboke.boke.controller;
 
-import com.byk.myboke.boke.entity.Message;
+import com.byk.myboke.boke.entity.BokeMessage;
 import com.byk.myboke.boke.service.MessageService;
 import com.byk.myboke.commen.IPUtil;
 import com.byk.myboke.commen.MailUtil;
@@ -37,26 +37,26 @@ public class MessageControlle {
 
 
     @PostMapping("/insert")
-    public RestUtil insert(HttpServletRequest request, Message message) throws Exception{
-        logger.info("新的留言");
+    public RestUtil insert(HttpServletRequest request, BokeMessage bokeMessage) throws Exception{
         RestUtil restUtil = new RestUtil();
         String ip = IPUtil.getIpAddr(request);
-        message.setUserIp(ip);
-        if (messageService.insertSelective(message) > 0) {
+        bokeMessage.setUserIp(ip);
+        //先发送邮件再操作数据库
+        try {
+            mailUtil.sendEmailToVistor(bokeMessage);
+        }catch (Exception e){
+            logger.info("邮箱地址错误");
+            bokeMessage.setReply(1);
+        }
+        if (messageService.insertSelective(bokeMessage) > 0) {
             restUtil.setMsg("我会尽快回复您的留言");
             restUtil.setStatus(20000);
-            mailUtil.sendEmailToMe(message,ip);
+            mailUtil.sendEmailToMe(bokeMessage,ip);
             logger.info("Ip为"+ip+"的用户留言了");
-            try {
-                mailUtil.sendEmailToVistor(message);
-            }catch (Exception e){
-                System.out.println("假的邮箱");
-            }
-
         } else {
             restUtil.setMsg("未知错误，请联系中边");
             restUtil.setStatus(20001);
-            restUtil.setData(message);
+            restUtil.setData(bokeMessage);
         }
         return restUtil;
     }

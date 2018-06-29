@@ -1,7 +1,7 @@
 package com.byk.myboke.boke.service.impl;
 
-import com.byk.myboke.boke.entity.Message;
-import com.byk.myboke.boke.mapper.MessageMapper;
+import com.byk.myboke.boke.entity.BokeMessage;
+import com.byk.myboke.boke.mapper.BokeMessageMapper;
 import com.byk.myboke.boke.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class MessageServiceImpl implements MessageService{
 
     @Autowired
-    private MessageMapper messageMapper;
+    private BokeMessageMapper messageMapper;
 
     @Override
     public int deleteByPrimaryKey(String id) {
@@ -23,29 +23,28 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public int insert(Message record) {
-
+    public int insert(BokeMessage record) {
         return 0;
     }
 
     @Override
-    public int insertSelective(Message record) {
+    public int insertSelective(BokeMessage record) {
 
         return messageMapper.insertSelective(record);
     }
 
     @Override
-    public Message selectByPrimaryKey(String id) {
+    public BokeMessage selectByPrimaryKey(String id) {
         return null;
     }
 
     @Override
-    public int updateByPrimaryKeySelective(Message record) {
+    public int updateByPrimaryKeySelective(BokeMessage record) {
         return 0;
     }
 
     @Override
-    public int updateByPrimaryKey(Message record) {
+    public int updateByPrimaryKey(BokeMessage record) {
         return 0;
     }
 }

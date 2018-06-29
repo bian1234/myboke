@@ -16,6 +16,4 @@ public interface VisiterMapper {
     int updateByPrimaryKeySelective(Visiter record);
 
     int updateByPrimaryKey(Visiter record);
-
-    int  countIp();
 }

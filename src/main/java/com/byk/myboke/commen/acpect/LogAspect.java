@@ -51,8 +51,6 @@ public class LogAspect {
         // 记录下请求内容
         logger.info("请求地址 : " + request.getRequestURL().toString());
         logger.info("请求方式 : " + request.getMethod());
-//        // 获取ip地址    ip可能是假的
-//        logger.info("IP : " +ipUtil. );
         logger.info("请求的类和方法 : " + joinPoint.getSignature().getDeclaringTypeName() + "."
                 + joinPoint.getSignature().getName());
         logger.info("参数 : " + Arrays.toString(joinPoint.getArgs()));
@@ -68,7 +66,6 @@ public class LogAspect {
     @AfterReturning(returning = "ret", pointcut = "logPointCut()")// returning的值和doAfterReturning的参数名一致
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容(返回值太复杂时，打印的是物理存储空间的地址)
-//        logger.debug("返回值 : " + ret.toString());
         logger.debug("返回值 : " + ret);
     }
 
@@ -81,7 +78,8 @@ public class LogAspect {
     @Around("logPointCut()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
-        Object ob = pjp.proceed();// ob 为方法的返回值
+        // ob 为方法的返回值
+        Object ob = pjp.proceed();
         logger.info("耗时 : " + (System.currentTimeMillis() - startTime));
         return ob;
     }
