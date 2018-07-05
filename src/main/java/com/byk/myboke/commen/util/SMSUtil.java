@@ -39,15 +39,15 @@ public class SMSUtil {
      */
     public void sendSMS(String phoneNumber) {
 //        // 短信应用SDK AppID     // 1400开头
-//        int appid = 1400101674;
+//        int appid = ;
 //        // 短信应用SDK AppKey
-//        String appkey = "599072c6b8af69616dcf230c96ee603e";
+//        String appkey = "";
 //        // 需要发送短信的手机号码
 //       // phoneNumber = "13999999999";
 //        // 短信模板ID，需要在短信应用中申请
-//        int templateId = 150923 ;
+//        int templateId =  ;
         // 签名// NOTE: 这里的签名"腾讯云"只是一个示例，真实的签名需要在短信控制台中申请，另外签名参数使用的是`签名内容`，而不是`签名ID`
-        String smsSign = "稚子候门";
+        String smsSign = "";
         try {
             String[] params = {};//参数，验证码为5678，30秒内填写
             SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
