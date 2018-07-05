@@ -2,9 +2,10 @@ package com.byk.myboke.boke.controller;
 
 import com.byk.myboke.boke.entity.BokeMessage;
 import com.byk.myboke.boke.service.MessageService;
-import com.byk.myboke.commen.IPUtil;
-import com.byk.myboke.commen.MailUtil;
-import com.byk.myboke.commen.RestUtil;
+import com.byk.myboke.commen.util.IPUtil;
+import com.byk.myboke.commen.util.MailUtil;
+import com.byk.myboke.commen.util.RestUtil;
+import com.byk.myboke.commen.util.SMSUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class MessageControlle {
     @Autowired
     private MailUtil mailUtil;
 
+    @Autowired
+    protected SMSUtil smsUtil;
 
-//    @Autowired
-//    private IPUtil ipUtil;
 
 
     @PostMapping("/insert")
@@ -46,6 +47,13 @@ public class MessageControlle {
             mailUtil.sendEmailToVistor(bokeMessage);
         }catch (Exception e){
             logger.info("邮箱地址错误");
+            bokeMessage.setReply(1);
+        }
+        //先发送短信再操作数据库
+        try {
+            smsUtil.sendSMS(bokeMessage.getPhonenumber());
+        }catch (Exception e){
+            logger.info("欢迎短信发送失败");
             bokeMessage.setReply(1);
         }
         if (messageService.insertSelective(bokeMessage) > 0) {
