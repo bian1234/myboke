@@ -58,6 +58,14 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
+		<!--短信接口-->
+		<dependency>
+			<groupId>com.github.qcloudsms</groupId>
+			<artifactId>qcloudsms</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
