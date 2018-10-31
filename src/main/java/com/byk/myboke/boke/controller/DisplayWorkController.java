@@ -2,7 +2,7 @@ package com.byk.myboke.boke.controller;
 
 import com.byk.myboke.boke.entity.DisplayWorks;
 import com.byk.myboke.boke.service.DisplayWorksService;
-import com.byk.myboke.commen.RestUtil;
+import com.byk.myboke.commen.util.RestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;

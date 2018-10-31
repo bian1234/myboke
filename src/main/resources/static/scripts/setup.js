@@ -2,7 +2,7 @@
 $(window).load(function () {
     $('.gf-slider').flexslider();
 
-    loadWorks();
+   // loadWorks();
 });
 //Setup Page
 $(document).ready(function () {

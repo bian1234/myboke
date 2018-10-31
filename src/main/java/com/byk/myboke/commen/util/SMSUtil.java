@@ -38,6 +38,7 @@ public class SMSUtil {
      * @param:   * @param null
      */
     public void sendSMS(String phoneNumber) {
+        System.out.println("====="+appid);
 //        // 短信应用SDK AppID     // 1400开头
 //        int appid = ;
 //        // 短信应用SDK AppKey

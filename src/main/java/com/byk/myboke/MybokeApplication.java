@@ -1,6 +1,8 @@
 package com.byk.myboke;
 
+import com.byk.myboke.commen.util.SMSUtil;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -20,7 +22,10 @@ public class MybokeApplication   {
 //		return builder.sources(MybokeApplication.class);
 //	}
 
+
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(MybokeApplication.class, args);
 	}
 }

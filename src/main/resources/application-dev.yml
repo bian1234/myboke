@@ -10,7 +10,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/boke?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://123.206.78.174:3306/boke?useUnicode=true&characterEncoding=utf8
     username: root
     password: 1234
     initialSize: 1
@@ -43,13 +43,13 @@ spring:
     database: 1
     timeout: 5000
     #连接超时时间（毫秒）
-    pool:
-      max-idle: 500
-      #最大空闲连接
-      min-idle: 0
-      #最小空闲连接
-      max-wait: -1
-      #连接池最大阻塞等待时间
-      max-active: 8
-      #连接池最大等待时间（使用负值表示没有限制）
+#    pool:
+#      max-idle: 500
+#      #最大空闲连接
+#      min-idle: 0
+#      #最小空闲连接
+#      max-wait: -1
+#      #连接池最大阻塞等待时间
+#      max-active: 8
+#      #连接池最大等待时间（使用负值表示没有限制）
 

@@ -2,7 +2,7 @@ package com.byk.myboke.system.controller;
 
 import com.byk.myboke.boke.entity.Visiter;
 import com.byk.myboke.boke.service.VisiterService;
-import com.byk.myboke.commen.IPUtil;
+import com.byk.myboke.commen.util.IPUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

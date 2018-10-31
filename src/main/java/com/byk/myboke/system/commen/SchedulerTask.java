@@ -18,7 +18,7 @@ public class SchedulerTask {
 
 
 
-    @Scheduled(cron="*/1 * * * * ?")     //每隔1秒打印一句话
+    //@Scheduled(cron="*/1 * * * * ?")     //每隔1秒打印一句话
     private void process(){
 
         System.out.println("this is scheduler task runing  "+(count++));

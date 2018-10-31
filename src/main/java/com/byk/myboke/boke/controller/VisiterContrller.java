@@ -1,8 +1,9 @@
 package com.byk.myboke.boke.controller;
 
 import com.byk.myboke.boke.service.VisiterService;
-import com.byk.myboke.commen.IPUtil;
-import com.byk.myboke.commen.MailUtil;
+
+import com.byk.myboke.commen.util.IPUtil;
+import com.byk.myboke.commen.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
